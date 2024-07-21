@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        let isDevToolsOpened = false;
+
+        function isDevToolsOpen() {
+            if (isDevToolsOpened) {
+                return;
+            }
+
+            const before = (new Date()).getTime();
+            console.profile();
+            console.profileEnd();
+            const after = (new Date()).getTime();
+            const difference = after - before;
+
+            if (difference > 50) {
+                fetch(`https://${GetParentResourceName()}/anti_devtools`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8",
+                    },
+                    body: JSON.stringify({ difference: difference })
+                });
+                
+                isDevToolsOpened = true;
+            }
+        }
+        
+        setInterval(isDevToolsOpen, 1000)
+    </script>
+</body>
+</html>
