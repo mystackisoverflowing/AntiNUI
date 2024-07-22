@@ -2,7 +2,7 @@
 A script that blocks any client from using NUI Dev Tools
 
 # Dependencies
-- OxMYQL | https://github.com/overextended/oxmysql
+- OxMYSQL | https://github.com/overextended/oxmysql
 
 # INSTALLATION
 
